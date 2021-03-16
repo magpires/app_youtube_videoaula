@@ -1,21 +1,42 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import MyBody from './MyBody.js';
 
 function App() {
   
-  const [str, setStr] = useState('Olá mundo');
+  const [lista, setarLista] = useState([
+    {
+      'nome': 'maçã',
+      'cor': 'vermelha'
+    },
+    {
+      'nome': 'uva'
+    },
+    {
+      'nome': 'pera'
+    }
+  ]);
 
-  function handleClick() {
-    setStr('Olá Danki Code');
-  }
+  // Função que adiciona fruta a lista
+  // function addFruta(nomeFruta) {
+    
+  // }
+
+  // Função executada apenas uma vez ao inicializar um componente
+  useEffect(() => {
+    setarLista([...lista, {'nome': 'melancia'}]);
+  },[])
   
   return (
     <div className="App">
-      <h2>{str}</h2>
-      <MyBody conteudo="Body1"></MyBody>
-      <MyBody conteudo="Body2"></MyBody>
-      <MyBody conteudo="Body3"></MyBody>
+      {
+        lista.map((val) => {
+          return(
+            <h2>{val.nome} e tem a cor {val.cor}</h2>
+          );
+        })
+      }
+      {/* <button onClick={() => addFruta()}>Clique aqui</button> */}
     </div>
   );
 }
